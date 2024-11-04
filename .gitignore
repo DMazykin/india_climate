@@ -1,0 +1,3 @@
+# Ignore DuckDB and WAL files
+*.ddb
+*.wal

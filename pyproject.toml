@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "india-climate-agri-database"
+version = "0.1.0"
+description = "A database for district-level climate, spatial, and agricultural data in India"
+authors = ["Denis Mazykin <d@mzkn.ch>"]
+license = "MIT"
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.12"
+duckdb = "^1.0.0"
+pandas = "^2.2.2"
+ipykernel = "^6.29.4"
+numpy = "^2.1.1"
+ibis-framework = {extras = ["duckdb", "geospatial"], version = "^9.5.0"}
+pins = "^0.8.6"
+gcsfs = "^2024.9.0.post1"
+rich = "^13.8.0"
+geopandas = "^1.0.1"
+plotly = "^5.24.1"
+pyarrow = "^17.0.0"
+fiona = "^1.10.1"
+lonboard = "^0.10.3"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
