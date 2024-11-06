@@ -466,6 +466,42 @@ files = [
 ]
 
 [[package]]
+name = "cads-api-client"
+version = "1.5.0"
+description = "CADS API Python client"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "cads_api_client-1.5.0-py3-none-any.whl", hash = "sha256:0784f89459783878769bfc44aab69f9a46ed0a586445fc9f864807ec485990e1"},
+    {file = "cads_api_client-1.5.0.tar.gz", hash = "sha256:eb4046a0014463ed8e6c3b230754bca7df02bd97d7914b4574aff3debee7ff41"},
+]
+
+[package.dependencies]
+attrs = "*"
+multiurl = ">=0.3.2"
+requests = "*"
+typing-extensions = "*"
+
+[package.extras]
+legacy = ["cdsapi"]
+
+[[package]]
+name = "cdsapi"
+version = "0.7.4"
+description = "Climate Data Store API"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "cdsapi-0.7.4-py2.py3-none-any.whl", hash = "sha256:5f70b40e8e777ae956deb6a13d1a3c8d8f099bada91919228adb27c34464144a"},
+    {file = "cdsapi-0.7.4.tar.gz", hash = "sha256:a32fedb6cf6c5683e488652fadbf5b956561f573e98d0ec474e2d8381fe24a34"},
+]
+
+[package.dependencies]
+cads-api-client = ">=1.4.7"
+requests = ">=2.5.0"
+tqdm = "*"
+
+[[package]]
 name = "certifi"
 version = "2024.8.30"
 description = "Python package for providing Mozilla's CA Bundle."
@@ -554,6 +590,27 @@ files = [
 
 [package.dependencies]
 pycparser = "*"
+
+[[package]]
+name = "cfgrib"
+version = "0.9.14.1"
+description = "Python interface to map GRIB files to the NetCDF Common Data Model following the CF Convention using ecCodes."
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "cfgrib-0.9.14.1-py3-none-any.whl", hash = "sha256:0714ece262231b0d4006fc7ba5a04f287a9fd42473ac3f6ed4703eb2e7e92161"},
+    {file = "cfgrib-0.9.14.1.tar.gz", hash = "sha256:a6e66e8a3d8f9823d3eef0c2c6ebca602d5bcc324f0baf4f3d13f68b0b40501e"},
+]
+
+[package.dependencies]
+attrs = ">=19.2"
+click = "*"
+eccodes = ">=0.9.8"
+numpy = "*"
+
+[package.extras]
+tests = ["dask[array]", "flake8", "pytest", "pytest-cov", "scipy", "xarray (>=0.15)"]
+xarray = ["xarray (>=0.15)"]
 
 [[package]]
 name = "charset-normalizer"
@@ -853,6 +910,36 @@ files = [
 ]
 
 [[package]]
+name = "eccodes"
+version = "2.38.3"
+description = "Python interface to the ecCodes GRIB and BUFR decoder/encoder"
+optional = false
+python-versions = "*"
+files = [
+    {file = "eccodes-2.38.3-cp310-cp310-macosx_13_0_arm64.whl", hash = "sha256:101759a317a7af725cffb2d83d608451fe436ab1aed7170b117cbe14086997c4"},
+    {file = "eccodes-2.38.3-cp310-cp310-macosx_13_0_x86_64.whl", hash = "sha256:170232a6a86d9871b8b4be39883586941e2a3082b679f06543924349f7444170"},
+    {file = "eccodes-2.38.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:ef46bcf3664fd738867fedd687c615e698867bb83f2a59fb4b163d3dc8fb0501"},
+    {file = "eccodes-2.38.3-cp311-cp311-macosx_13_0_arm64.whl", hash = "sha256:0e476b6c8d5326b39fb6b0a3bdbb4842162c674ae0753db03ad6b015383a1ad1"},
+    {file = "eccodes-2.38.3-cp311-cp311-macosx_13_0_x86_64.whl", hash = "sha256:9f4da4266e4a92835832927f7ca7082ef28ca817aa29d63d8880095fb5ec50d4"},
+    {file = "eccodes-2.38.3-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:b8d2bf88622b853d7dc8abbbd486c5b1e2958764fb1f19e7b5caee7f2d81b800"},
+    {file = "eccodes-2.38.3-cp312-cp312-macosx_13_0_arm64.whl", hash = "sha256:ab4945fb235eead908db7d8107ebc711010d760c3aeb74ced457b79275a3d23e"},
+    {file = "eccodes-2.38.3-cp312-cp312-macosx_13_0_x86_64.whl", hash = "sha256:29bd280878840c5b21a90cd7495c441564f6ea59c7fd19e61307188417281f61"},
+    {file = "eccodes-2.38.3-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:0ac9fdc46c9db4985b8c4fec7b15f00647bc37cd816019261c312609e2f992c2"},
+    {file = "eccodes-2.38.3-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:d75eb42f1ba19ecac6b617d23882ee4ba325228b68b60ec0f202776aae85380d"},
+    {file = "eccodes-2.38.3-cp39-cp39-macosx_13_0_arm64.whl", hash = "sha256:277b3a7204a1126d672bfe81901afb23a7ab725a5ef311bb15d8c8dcf983675e"},
+    {file = "eccodes-2.38.3-cp39-cp39-macosx_13_0_x86_64.whl", hash = "sha256:cd7bd04ba8caea8e251c8859ceedc99851687fcc91d622765eaf480183768baf"},
+    {file = "eccodes-2.38.3-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:702306ee7ab12cfc67d8c54501fc44dbe3cc5577a0c560d7f586eb77f923ed2c"},
+    {file = "eccodes-2.38.3-py3-none-any.whl", hash = "sha256:8d16b89c4b48dc236fd409ab799b68f90b01c3caa1607f60233093e6daa2bda2"},
+    {file = "eccodes-2.38.3.tar.gz", hash = "sha256:8dc76ab217199761dd6f93aee65eadf3a1e9f5760fee488f9f0643463ee8bc78"},
+]
+
+[package.dependencies]
+attrs = "*"
+cffi = "*"
+findlibs = "*"
+numpy = "*"
+
+[[package]]
 name = "executing"
 version = "2.1.0"
 description = "Get the currently executing AST node of a frame, and other information"
@@ -865,6 +952,16 @@ files = [
 
 [package.extras]
 tests = ["asttokens (>=2.1.0)", "coverage", "coverage-enable-subprocess", "ipython", "littleutils", "pytest", "rich"]
+
+[[package]]
+name = "findlibs"
+version = "0.0.5"
+description = "A packages to search for shared libraries on various platforms"
+optional = false
+python-versions = "*"
+files = [
+    {file = "findlibs-0.0.5.tar.gz", hash = "sha256:7a801571e999d0ee83f9b92cbb598c21f861ee26ca9dba74cea8958ba4335e7e"},
+]
 
 [[package]]
 name = "fiona"
@@ -1293,6 +1390,62 @@ protobuf = ">=3.20.2,<4.21.1 || >4.21.1,<4.21.2 || >4.21.2,<4.21.3 || >4.21.3,<4
 
 [package.extras]
 grpc = ["grpcio (>=1.44.0,<2.0.0.dev0)"]
+
+[[package]]
+name = "h5netcdf"
+version = "1.4.0"
+description = "netCDF4 via h5py"
+optional = false
+python-versions = ">=3.9"
+files = [
+    {file = "h5netcdf-1.4.0-py3-none-any.whl", hash = "sha256:d1bb96fce5dcf42908903c9798beeef70ac84e97159eb381f1b151459313f228"},
+    {file = "h5netcdf-1.4.0.tar.gz", hash = "sha256:e959c3b5bd3ca7965ce5f4383a4e038ffcb55034c63d791829bd33a5ac38a962"},
+]
+
+[package.dependencies]
+h5py = "*"
+packaging = "*"
+
+[package.extras]
+test = ["netCDF4", "pytest"]
+
+[[package]]
+name = "h5py"
+version = "3.12.1"
+description = "Read and write HDF5 files from Python"
+optional = false
+python-versions = ">=3.9"
+files = [
+    {file = "h5py-3.12.1-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:2f0f1a382cbf494679c07b4371f90c70391dedb027d517ac94fa2c05299dacda"},
+    {file = "h5py-3.12.1-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:cb65f619dfbdd15e662423e8d257780f9a66677eae5b4b3fc9dca70b5fd2d2a3"},
+    {file = "h5py-3.12.1-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:3b15d8dbd912c97541312c0e07438864d27dbca857c5ad634de68110c6beb1c2"},
+    {file = "h5py-3.12.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:59685fe40d8c1fbbee088c88cd4da415a2f8bee5c270337dc5a1c4aa634e3307"},
+    {file = "h5py-3.12.1-cp310-cp310-win_amd64.whl", hash = "sha256:577d618d6b6dea3da07d13cc903ef9634cde5596b13e832476dd861aaf651f3e"},
+    {file = "h5py-3.12.1-cp311-cp311-macosx_10_9_x86_64.whl", hash = "sha256:ccd9006d92232727d23f784795191bfd02294a4f2ba68708825cb1da39511a93"},
+    {file = "h5py-3.12.1-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:ad8a76557880aed5234cfe7279805f4ab5ce16b17954606cca90d578d3e713ef"},
+    {file = "h5py-3.12.1-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:1473348139b885393125126258ae2d70753ef7e9cec8e7848434f385ae72069e"},
+    {file = "h5py-3.12.1-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:018a4597f35092ae3fb28ee851fdc756d2b88c96336b8480e124ce1ac6fb9166"},
+    {file = "h5py-3.12.1-cp311-cp311-win_amd64.whl", hash = "sha256:3fdf95092d60e8130ba6ae0ef7a9bd4ade8edbe3569c13ebbaf39baefffc5ba4"},
+    {file = "h5py-3.12.1-cp312-cp312-macosx_10_13_x86_64.whl", hash = "sha256:06a903a4e4e9e3ebbc8b548959c3c2552ca2d70dac14fcfa650d9261c66939ed"},
+    {file = "h5py-3.12.1-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:7b3b8f3b48717e46c6a790e3128d39c61ab595ae0a7237f06dfad6a3b51d5351"},
+    {file = "h5py-3.12.1-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:050a4f2c9126054515169c49cb900949814987f0c7ae74c341b0c9f9b5056834"},
+    {file = "h5py-3.12.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:5c4b41d1019322a5afc5082864dfd6359f8935ecd37c11ac0029be78c5d112c9"},
+    {file = "h5py-3.12.1-cp312-cp312-win_amd64.whl", hash = "sha256:e4d51919110a030913201422fb07987db4338eba5ec8c5a15d6fab8e03d443fc"},
+    {file = "h5py-3.12.1-cp313-cp313-macosx_10_13_x86_64.whl", hash = "sha256:513171e90ed92236fc2ca363ce7a2fc6f2827375efcbb0cc7fbdd7fe11fecafc"},
+    {file = "h5py-3.12.1-cp313-cp313-macosx_11_0_arm64.whl", hash = "sha256:59400f88343b79655a242068a9c900001a34b63e3afb040bd7cdf717e440f653"},
+    {file = "h5py-3.12.1-cp313-cp313-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:d3e465aee0ec353949f0f46bf6c6f9790a2006af896cee7c178a8c3e5090aa32"},
+    {file = "h5py-3.12.1-cp313-cp313-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:ba51c0c5e029bb5420a343586ff79d56e7455d496d18a30309616fdbeed1068f"},
+    {file = "h5py-3.12.1-cp313-cp313-win_amd64.whl", hash = "sha256:52ab036c6c97055b85b2a242cb540ff9590bacfda0c03dd0cf0661b311f522f8"},
+    {file = "h5py-3.12.1-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:d2b8dd64f127d8b324f5d2cd1c0fd6f68af69084e9e47d27efeb9e28e685af3e"},
+    {file = "h5py-3.12.1-cp39-cp39-macosx_11_0_arm64.whl", hash = "sha256:4532c7e97fbef3d029735db8b6f5bf01222d9ece41e309b20d63cfaae2fb5c4d"},
+    {file = "h5py-3.12.1-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:6fdf6d7936fa824acfa27305fe2d9f39968e539d831c5bae0e0d83ed521ad1ac"},
+    {file = "h5py-3.12.1-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:84342bffd1f82d4f036433e7039e241a243531a1d3acd7341b35ae58cdab05bf"},
+    {file = "h5py-3.12.1-cp39-cp39-win_amd64.whl", hash = "sha256:62be1fc0ef195891949b2c627ec06bc8e837ff62d5b911b6e42e38e0f20a897d"},
+    {file = "h5py-3.12.1.tar.gz", hash = "sha256:326d70b53d31baa61f00b8aa5f95c2fcb9621a3ee8365d770c551a13dbbcbfdf"},
+]
+
+[package.dependencies]
+numpy = ">=1.19.3"
 
 [[package]]
 name = "humanize"
@@ -1857,6 +2010,22 @@ files = [
     {file = "multidict-6.1.0-py3-none-any.whl", hash = "sha256:48e171e52d1c4d33888e529b999e5900356b9ae588c2f09a52dcefb158b27506"},
     {file = "multidict-6.1.0.tar.gz", hash = "sha256:22ae2ebf9b0c69d206c003e2f6a914ea33f0a932d4aa16f236afc049d9958f4a"},
 ]
+
+[[package]]
+name = "multiurl"
+version = "0.3.2"
+description = "A package to download several URL as one, as well as supporting multi-part URLs"
+optional = false
+python-versions = "*"
+files = [
+    {file = "multiurl-0.3.2.tar.gz", hash = "sha256:8d412bf8efe823916d289523a0891884dabdac3b30d9304f2f915b0fa94ab4e2"},
+]
+
+[package.dependencies]
+python-dateutil = "*"
+pytz = "*"
+requests = "*"
+tqdm = "*"
 
 [[package]]
 name = "nest-asyncio"
@@ -3050,6 +3219,26 @@ files = [
 ]
 
 [[package]]
+name = "tqdm"
+version = "4.66.6"
+description = "Fast, Extensible Progress Meter"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "tqdm-4.66.6-py3-none-any.whl", hash = "sha256:223e8b5359c2efc4b30555531f09e9f2f3589bcd7fdd389271191031b49b7a63"},
+    {file = "tqdm-4.66.6.tar.gz", hash = "sha256:4bdd694238bef1485ce839d67967ab50af8f9272aab687c0d7702a01da0be090"},
+]
+
+[package.dependencies]
+colorama = {version = "*", markers = "platform_system == \"Windows\""}
+
+[package.extras]
+dev = ["pytest (>=6)", "pytest-cov", "pytest-timeout", "pytest-xdist"]
+notebook = ["ipywidgets (>=6)"]
+slack = ["slack-sdk"]
+telegram = ["requests"]
+
+[[package]]
 name = "traitlets"
 version = "5.14.3"
 description = "Traitlets Python configuration system"
@@ -3124,6 +3313,31 @@ files = [
     {file = "widgetsnbextension-4.0.13-py3-none-any.whl", hash = "sha256:74b2692e8500525cc38c2b877236ba51d34541e6385eeed5aec15a70f88a6c71"},
     {file = "widgetsnbextension-4.0.13.tar.gz", hash = "sha256:ffcb67bc9febd10234a362795f643927f4e0c05d9342c727b65d2384f8feacb6"},
 ]
+
+[[package]]
+name = "xarray"
+version = "2024.10.0"
+description = "N-D labeled arrays and datasets in Python"
+optional = false
+python-versions = ">=3.10"
+files = [
+    {file = "xarray-2024.10.0-py3-none-any.whl", hash = "sha256:ae1d38cb44a0324dfb61e492394158ae22389bf7de9f3c174309c17376df63a0"},
+    {file = "xarray-2024.10.0.tar.gz", hash = "sha256:e369e2bac430e418c2448e5b96f07da4635f98c1319aa23cfeb3fbcb9a01d2e0"},
+]
+
+[package.dependencies]
+numpy = ">=1.24"
+packaging = ">=23.1"
+pandas = ">=2.1"
+
+[package.extras]
+accel = ["bottleneck", "flox", "numba (>=0.54)", "numbagg", "opt-einsum", "scipy"]
+complete = ["xarray[accel,etc,io,parallel,viz]"]
+dev = ["hypothesis", "mypy", "pre-commit", "pytest", "pytest-cov", "pytest-env", "pytest-timeout", "pytest-xdist", "ruff", "sphinx", "sphinx-autosummary-accessors", "xarray[complete]"]
+etc = ["sparse"]
+io = ["cftime", "fsspec", "h5netcdf", "netCDF4", "pooch", "pydap", "scipy", "zarr"]
+parallel = ["dask[complete]"]
+viz = ["cartopy", "matplotlib", "nc-time-axis", "seaborn"]
 
 [[package]]
 name = "xxhash"
@@ -3375,4 +3589,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "ee251a689a55e684ce234541f4dee07d1042c8c5216f80058aecfcb58a9eda43"
+content-hash = "ca1082e8d764bfb320c3d7618b5f9f5733b79ee3c5b94077905c0b9682ed23df"
