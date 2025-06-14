@@ -1,0 +1,31 @@
+[project]
+name = "india-climate-agri-database"
+version = "0.1.0"
+description = "A database for district-level climate, spatial, and agricultural data in India"
+authors = ["Denis Mazykin <d@mzkn.ch>"]
+license = "MIT"
+readme = "README.md"
+
+requires-python = ">=3.12"
+dependencies = [
+    "duckdb>=1.0.0",
+    "pandas>=2.2.2",
+    "ipykernel>=6.29.4",
+    "numpy>=2.1.1",
+    "ibis-framework[duckdb,geospatial]>=9.5.0",
+    "pins>=0.8.6",
+    "gcsfs>=2024.9.0.post1",
+    "rich>=13.8.0",
+    "geopandas>=1.0.1",
+    "plotly>=5.24.1",
+    "pyarrow>=17.0.0",
+    "fiona>=1.10.1",
+    "lonboard>=0.10.3",
+    "cdsapi>=0.7.4",
+    "xarray>=2024.10.0",
+    "cfgrib>=0.9.14.1",
+    "h5netcdf>=1.4.0",
+    "matplotlib>=3.9.2",
+    "folium>=0.18.0",
+]
+

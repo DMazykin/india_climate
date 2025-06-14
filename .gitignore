@@ -1,0 +1,7 @@
+# Ignore DuckDB and WAL files
+*.ddb
+*.wal
+
+/.venv
+*.parquet
+*.nc
