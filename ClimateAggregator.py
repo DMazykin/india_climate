@@ -169,6 +169,8 @@ class ClimateAggregator:
             out_path = self.OUTPUT_DIR / mapping_out
         else:
             out_path = mapping_out
+        # Ensure 'date' column is datetime64[ns] if present
+        df["date"] = pd.to_datetime(df["date"])
         df.to_parquet(out_path, index=False)
         print(f"✅ Saved mapping table → {out_path}")
         return df
@@ -212,31 +214,43 @@ class ClimateAggregator:
         if gid_col not in mapping.columns:
             raise KeyError(f"{gid_col} not found in mapping file.")
         ds = xr.open_dataset(era5_file)
+        # Unified time logic: support both 'valid_time' and 'time' as time coordinate
+        time_var = "valid_time" if "valid_time" in ds.variables else "time"
+        times = pd.to_datetime(ds[time_var].values)
+        n_rows, n_cols = ds[var].shape[-2:]
+        # Robustness: assert mapping indices are within bounds
+        assert (
+            mapping["i"].between(0, n_rows - 1).all()
+            and mapping["j"].between(0, n_cols - 1).all()
+        ), "Index out of bounds in mapping file."
         results = []
-        times = pd.to_datetime(ds["valid_time"].values)
-        unique_dates = np.unique(times.date)
-        for date in unique_dates:
+        for date in np.unique(times.date):
             mask = times.date == date
-            arr = ds[var].isel(valid_time=mask).mean(dim="valid_time").values
+            arr = ds[var].isel({time_var: mask}).mean(dim=time_var).values
             if var in ["t2m", "2m_temperature", "temperature"]:
                 arr = arr - 273.15
             arr_flat = arr.reshape(-1)
             valid_mask = (
                 (mapping["i"] >= 0)
-                & (mapping["i"] < arr.shape[0])
+                & (mapping["i"] < n_rows)
                 & (mapping["j"] >= 0)
-                & (mapping["j"] < arr.shape[1])
+                & (mapping["j"] < n_cols)
             )
             df = mapping[valid_mask].copy()
-            df["value"] = arr_flat[df["i"] * arr.shape[1] + df["j"]]
+            # Performance: vectorized weighted sum per region
+            flat_indices = df["i"] * n_cols + df["j"]
+            df["value"] = arr_flat[flat_indices]
             df["weighted_value"] = df["value"] * df["weight"]
-            agg = df.groupby(gid_col).agg(value=("weighted_value", "sum")).reset_index()
+            agg = df.groupby(gid_col)["weighted_value"].sum().reset_index(name="value")
             agg["series_id"] = agg[gid_col] + f"_{var}"
+            # Foundry-ready: ensure date is proper timestamp
             agg["date"] = pd.to_datetime(date)
             agg = agg.rename(columns={gid_col: "GID"})
             results.append(agg[["series_id", "date", "value"]])
         out_df = pd.concat(results, ignore_index=True)
-        out_df.to_parquet(out_path, index=False)
+        # Ensure 'date' column is datetime64[ns] if present
+        out_df["date"] = pd.to_datetime(out_df["date"])
+        out_df.to_parquet(out_path, index=False, coerce_timestamps="ms")
         print(f"✅ Saved ADM{adm_level} {var} timeseries to {out_path}")
         return out_df
 
@@ -304,6 +318,9 @@ class ClimateAggregator:
             out_path = self.OUTPUT_DIR / output_file
         else:
             out_path = output_file
-        meta.to_parquet(out_path, index=False)
+        # Ensure 'date' column is datetime64[ns] if present
+        if "date" in meta.columns:
+            meta["date"] = pd.to_datetime(meta["date"])
+        meta.to_parquet(out_path, index=False, coerce_timestamps="ms")
         print(f"✅ Saved ADM{adm_level} metadata to {out_path}")
         return meta

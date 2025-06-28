@@ -6,3 +6,4 @@
 *.parquet
 *.nc
 *.zip
+*.gpkg
